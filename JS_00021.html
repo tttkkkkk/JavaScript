@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<style>
+ body {background: gray;}
+ #box {transition: 0.5s; opacity: 0;}
+ input:checked + #box  { opacity: 1;}
+</style>
+
+1+1= ? <input type="checkbox" id="chk" />
+<div id="box">2</div>
+<div id="tim"></div>
+
+<script>
+ (function() {
+  'use strict';
+
+   const tim = document.getElementById("tim");
+   const chk = document.getElementById("chk");
+
+   //3000ms = 3s
+   const endTime = Date.now() + 3000;
+   // 5ms Interval
+   const timerId = setInterval(timer,5);
+   
+   function timer() {
+     const nowTime = Date.now();
+     const dif = endTime - nowTime;
+     const sec = dif / 1000;
+     tim.textContent = `${sec}`;
+
+     if (sec<0 || chk.checked) {
+       clearInterval(timerId);
+       tim.style.display = "none";
+       chk.checked = true;
+     }
+   }
+  })();
+</script>
+</body>
+</html>
+

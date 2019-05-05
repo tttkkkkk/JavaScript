@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+#nav {  opacity: .2;}
+main { width: 100%; max-width: 200px; height: 200px;}
+.rectangle {
+  cursor: pointer;
+  width: 100%;
+  height: calc(100% - 50px);
+  --recSta: hsl(0, 100%, 50%);
+  --recEnd: hsl(322, 100%, 50%);
+  background-image: linear-gradient(-135deg, var(--recSta), var(--recEnd));
+}
+</style>
+</head>
+<body>
+  <main>
+  <div class="rectangle"></div>
+  <p id="nav"></p>
+  </main>
+  <script>
+  (function() {
+    'use strict';
+     const rec = document.querySelector('.rectangle');
+     const nav = document.getElementById('nav');
+
+     rec.addEventListener('click', function() {
+
+       const randomHue = Math.trunc(Math.random() * 360);
+       const randomColorStart = `hsl(${randomHue}, 100%, 50%)`;
+       const randomColorEnd = `hsl(${randomHue + 50}, 100%, 50%)`;
+       nav.innerHTML = randomColorStart + "<br>" + randomColorEnd;
+       //ïœçX
+       rec.style.setProperty('--recSta', randomColorStart);
+       rec.style.setProperty('--recEnd', randomColorEnd);
+    });
+  })();
+  </script>
+</body>
+</html>

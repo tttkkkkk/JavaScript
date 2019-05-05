@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<head>
+<style>
+body {
+  background: gray;
+}
+#spin {
+  cursor: pointer;
+  width: 100px;
+  background: #3498db;
+  border-radius: 17px;
+  color: #fff;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+  <div class="pan"><input value="1"></div>
+  <div class="pan"><input value="2"></div>
+  <div class="pan"><input value="3"></div>
+  <div class="pan"><input value="4"></div>
+  <div class="pan"><input value="5"></div>
+  <div id="spin";  border="5px">start</div>
+  <script>
+  (function() {
+	'use strict';
+
+	var pans = document.getElementsByClassName('pan');
+	var spin = document.getElementById('spin');
+
+	function runSlot(n) {
+	  setTimeout(function() {
+	    pans[n].children[0].value = 1 + Math.floor(Math.random()*5);
+	    runSlot(n);	
+	  },50);
+	}
+
+	spin.addEventListener('click', function() {
+	var i;
+	for(i=0; i< pans.length; i++){
+	  runSlot(i);
+	}
+	});
+  })();
+  </script>
+</body>
+</html>

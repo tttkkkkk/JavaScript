@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+<style>
+body  {background: gray;}
+#msg  {width: 200px; height: 200px;background: #3498db;}
+#stop {cursor: pointer;width: 100px; background: white;}
+</style>
+</head>
+<body>
+<div id="msg"></div>
+<div id="stop">STOP</div>
+<script>
+ (function() {
+  'use strict';
+   const msgList = [
+     'あれ？',
+     '声が',
+     '遅れて聞こえるよ'
+   ];
+   
+   const msg  = document.getElementById('msg');
+   const stop = document.getElementById('stop');
+   var i = 0;
+   var timerId;
+
+   msg.addEventListener('click', () => {
+     if (i >= msgList.length) {
+         i = 0;
+         msg.innerHTML= '';
+         return;
+     }
+     msg.innerHTML += msgList[i] + '<br>';
+     i ++;
+   });
+   //setTimeout内に再帰処理（自分自身を呼出）
+   function updMsg() {
+     timerId = setTimeout(() => {
+       msg.dispatchEvent(new Event('click'));
+       //以下でも同じ結果
+       //msg.click();
+       updMsg();
+     }, 1000);
+   }
+   updMsg();
+
+   //STOPしたいとき
+   stop.addEventListener('click', () => {
+     msg.innerHTML += 'STOPしました'+ '<br>';
+     clearTimeout(timerId);
+   });
+  })();
+  </script>
+</body>
+</html>

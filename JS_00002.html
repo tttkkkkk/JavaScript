@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+#calc {  cursor: pointer;width: 100px;background: #3498db;}
+</style>
+</head>
+<body>
+  <label for="kin">額:</label><input id="kin" value="100"><br>
+  <label for="tax">率:</label><input id="tax" value="">※省略時は0.08<br>
+  <label for="ans">税:</label><input id="ans" value=""><br>
+  <div id="calc">calc</div>
+  <script>
+  (function() {
+    'use strict';
+    var kin  = document.getElementById('kin');
+    var tax  = document.getElementById('tax');
+    var ans  = document.getElementById('ans');
+    var calc = document.getElementById('calc');
+    //引数省略可能
+    function cal(kin , tax=0.08) {
+      console.log(kin);
+      console.log(tax);
+      ans.value = kin * tax;
+    }
+    //正規表現による数値チェック
+    function isNumber(val){
+      var regex = new RegExp(/^[-+]?[0-9]+(\.[0-9]+)?$/);
+      return regex.test(val);
+    }
+    //クリックイベント
+    calc.addEventListener('click', function() {
+      console.log(kin.value);
+      console.log(tax.value);
+      if (isNumber(tax.value)) {
+         cal(kin.value , tax.value);
+      } else {
+         cal(kin.value);
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+#search-word-input:focus {background: yellow;}
+p.ok {background: powderblue;}
+</style>
+</head>
+<body>
+<header>
+  <label>ID(2Œ…)‚ð“ü—Í‚µ‚Ä‚Ë
+  <input id="search-word-input" maxlength="2" type="text">
+  </label>
+</header>
+<body>
+  <p id="search-result"></p>
+</body>
+<script>
+(function() {
+ 'use strict';
+  const userDataList = [
+    { id: 11, name: 'ŽO“c' },
+    { id: 12, name: 'lŒ©' },
+    { id: 13, name: '¡é' },
+    { id: 14, name: 'ˆÉ•~' },
+    { id: 15, name: 'ˆË“c' }
+  ];
+  const searchWordText = document.querySelector('#search-word-input');
+  const searchResult   = document.querySelector('#search-result');
+  searchWordText.select();
+
+  function findUser(searchId) {
+    console.log(searchId);
+    if (!searchId || searchId === '') {
+      searchResult.classList.remove('ok');
+      searchResult.textContent = '';
+      return;
+    }
+
+    //ðŒ‚ð–ž‚½‚·Å‰‚Ì—v‘f‚ðŽæ“¾
+    const targetData = userDataList.find((xxx) => xxx.id === searchId);
+    //¦ˆÈ‰º‚Æ“¯—l
+    // const targetData = userDataList.find(xxx => {
+    //   return xxx.id === searchId
+    // });
+    
+    if (targetData == null) {
+      console.log('~');
+      searchResult.classList.remove('ok');
+      searchResult.textContent = 'Nothing..';
+      return;
+     }
+    console.log('›');
+    searchResult.classList.add('ok');
+    searchResult.textContent = targetData.name;
+  }
+
+  searchWordText.addEventListener('keyup', () => {
+     const searchId = Number(event.target.value);
+     findUser(searchId);
+  });
+})();
+</script>
+</body>
+</html>

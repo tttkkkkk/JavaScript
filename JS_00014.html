@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+</style>
+</head>
+<body>
+ <a href="demo/test.html" target="_blank">リンク</a>
+
+ <!-- 
+ 今回はJavaScriptで対応しましたが、以下のように直接設定してもOK
+ <a href="test.html" target="_blank" rel="noopener">リンク</a>
+ -->
+
+ <script>
+ (function() {
+  'use strict';
+
+    const aList = document.querySelectorAll('a');
+
+    //target="_blank"の要素にrel="noopener"を設定
+    aList.forEach((xxx) => {
+      if (xxx.hasAttribute('target') === false)    {return;}
+      if (xxx.getAttribute('target') !== '_blank') {return;}
+      xxx.setAttribute('rel', 'noopener');
+    });
+
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+.btn {  cursor: pointer;width: 100px;background: #3498db;}
+#res {position: absolute; top:50px;}
+li { list-style: none; } 
+</style>
+</head>
+<body>
+ <span id="btn" class="btn">Click</span>
+ <div id="res"></div>
+ <script>
+ (function() {
+  'use strict';
+
+    function addMsg(xxx) {
+     let date   = new Date();
+     let locale = date.toLocaleTimeString();
+     document.getElementById('res').innerHTML += `<li>${locale}  ${xxx} </li>`;
+    }
+
+    document.querySelector('#btn').addEventListener('click', () => {
+      addMsg('Click');
+      addMsg('');
+      
+      //ÇPÇ¬ñ⁄ÇÃèàóù
+      const promise1 = new Promise((resolve) => {
+       addMsg("1 Start");
+       setTimeout(() => {
+         addMsg("1 End");
+         resolve("1");
+       } ,1000);
+      });
+      //ÇQÇ¬ñ⁄ÇÃèàóù
+      const promise2 = new Promise((resolve) => {
+       addMsg("2 Start");
+       setTimeout(() => {
+         addMsg("2 End");
+         resolve("2");
+       } ,4000);
+      });
+      //ÇRÇ¬ñ⁄ÇÃèàóù
+      const promise3 = new Promise((resolve) => {
+       addMsg("3 Start");
+       addMsg('');
+       setTimeout(() => {
+         addMsg("3 End");
+         resolve("3");
+       } ,8000);
+      });
+     
+      //ï°êîÇÃèàóùÇé¿çs
+      Promise.all([
+       promise1,
+       promise2,
+       promise3
+      ])
+      .then(function(xxx){
+        addMsg('');
+        addMsg(xxx);
+        addMsg('End!');
+      })
+
+    });
+
+   })();
+  </script>
+</body>
+</html>

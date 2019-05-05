@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+#nav {  opacity: .2;}
+.rectangle {
+  width:150px;
+  display:inline-block;
+  --recSta: hsl(0, 100%, 50%);
+  --recEnd: hsl(322, 100%, 50%);
+  background-image: linear-gradient(-135deg, var(--recSta), var(--recEnd));
+}
+</style>
+</head>
+<body>
+  <span id="a1" class="rectangle">1</span>
+  <span id="a2" class="rectangle">2</span>
+  <p id="nav"></p>
+  <script>
+  (function() {
+    'use strict';
+     const a1  = document.getElementById('a1');
+     const a2  = document.getElementById('a2');
+     const nav = document.getElementById('nav');
+
+     //リサイズ
+     window.onresize = function () {
+       nav.innerHTML = window.innerWidth;
+     };
+
+    // メディアクエリ
+    const mediaQueryList = matchMedia('(min-width: 480px)');
+    mediaQueryList.addListener(onMediaQueryChange);
+    function onMediaQueryChange(mediaQueryList) {
+      if (mediaQueryList.matches === true) {
+        a2.style.visibility = "visible";
+      } else {
+        a2.style.visibility = "hidden";
+      }
+    }
+   onMediaQueryChange(mediaQueryList);
+  })();
+  </script>
+</body>
+</html>

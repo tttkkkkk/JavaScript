@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+.btn {  cursor: pointer; width: 100px; margin:7px; background: #3498db;}
+.c{
+  display: flex;
+  padding: 10px;
+  margin-top: 20px;
+}
+.con {
+  display: flex;
+  border: 2px dotted #fff;
+  padding: 10px;
+  margin-top: 20px;
+}
+.con div {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  border: 2px dotted #fff;
+  padding: 10px;
+}
+.box {
+  border: 4px solid #d03939 !important;
+  padding: 10px;
+}
+li { list-style: none; } 
+</style>
+</head>
+<body>
+  <span id="btn1" class="btn">first</span>
+  <span id="btn2" class="btn">middle</span>
+  <span id="btn3" class="btn">Last</span>
+  <span id="btn4" class="btn">Remove</span>
+  <div class="c">
+    <div class="box">Box</div>
+  </div>
+  <div class="con">
+    <div id="t1">—v‘f1</div>
+    <div id="t2">—v‘f2</div>
+  </div>
+  <p id="res"></p>
+
+ <script>
+ (function() {
+  'use strict';
+   const t1  = document.getElementById('t1');
+   const t2  = document.getElementById('t2');
+   const con = document.querySelector('.con');
+   const box = document.querySelector('.box');
+
+   const clone1 = box.cloneNode(true);
+   const clone2 = box.cloneNode(true);
+   const clone3 = box.cloneNode(true);
+
+   function addMsg(xxx) {
+    let date   = new Date();
+    let locale = date.toLocaleTimeString();
+    document.getElementById('res').innerHTML += `<li>${locale}  add ${xxx}.. </li>`;
+   }
+
+   document.getElementById('btn1').addEventListener('click', function() {
+    //æ“ª‚É’Ç‰Á
+    con.insertBefore(clone1 , con.firstElementChild);
+    addMsg('first');
+   });
+   document.getElementById('btn2').addEventListener('click', function() {
+    //Žw’è—v‘f‚Ì‘O‚É’Ç‰Á
+    con.insertBefore(clone2 , t2);
+    addMsg('middle');
+   });
+   document.getElementById('btn3').addEventListener('click', function() {
+    //––”ö‚É’Ç‰Á
+    con.appendChild(clone3);
+    addMsg('last');
+   });
+   document.getElementById('btn4').addEventListener('click', function() {
+    //’Ç‰Á‚µ‚½—v‘f‚ð‘Síœ
+     const nodeList = document.querySelectorAll('.con > .box');
+     nodeList.forEach((el) => {el.remove();});
+     document.getElementById('res').innerHTML = '';
+   });
+
+  })();
+  </script>
+</body>
+</html>

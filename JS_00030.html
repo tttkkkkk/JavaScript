@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+#open, #close {
+  cursor: pointer;
+  width:80px;
+  border-radius: 3px;
+  background: #3498db;
+}
+#mask {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#modal {
+  background: #fff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 4px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: .8s;
+  z-index: 2;
+}
+#modal p {
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+#mask.hidden {
+  display: none;
+}
+#modal.hidden {
+  transform: translate(0, -500px);
+}
+</style>
+</head>
+<body>
+  <input id="text">
+  <div id="modal" class="hidden">
+    <input id="modalText">
+    <div id="close">Close</div>
+  </div>
+  <div id="open">Open</div>
+  <div id="mask" class="hidden"></div>
+
+  <script>
+  (function() {
+    'use strict';
+    var text  = document.getElementById('text');
+    var modalText  = document.getElementById('modalText');
+    var open  = document.getElementById('open');
+    var close = document.getElementById('close');
+    var modal = document.getElementById('modal');
+    var mask = document.getElementById('mask');
+
+    //「Open」ボタンクリック
+    open.addEventListener('click', function() {
+      modal.className = '';
+      mask.className = '';
+    });
+
+    //モーダル画面の閉じるボタンクリック
+    close.addEventListener('click', function() {
+      modal.className = 'hidden';
+      mask.className = 'hidden';
+    });
+
+    //mask（モーダル表示中の黒い画面）クリック ＝ モーダル画面の閉じるボタンクリック
+    mask.addEventListener('click', function() {
+      close.click();
+    });
+
+    //テキストボックス入力で、値を連動させる
+    text.addEventListener('keyup', function() {
+       modalText.value= this.value;
+    });
+    modalText.addEventListener('keyup', function() {
+       text.value= this.value;
+    });
+
+  })();
+  </script>
+</body>
+</html>
+

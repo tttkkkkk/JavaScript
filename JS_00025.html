@@ -1,0 +1,46 @@
+<style>
+.checkbox-input{ 
+  display: none; 
+} 
+.checkbox-parts{ 
+  padding-left: 20px; 
+  position:relative; 
+  margin-right: 20px; 
+} 
+ .checkbox-parts::before{ 
+   content: ""; 
+   display: block; 
+   position: absolute; 
+   top: 0; 
+   left: 0; 
+   width: 15px; 
+   height: 15px; 
+   border: 1px solid #999; 
+   border-radius: 4px; 
+ } 
+ .checkbox-input:checked + .checkbox-parts{ 
+   color: tomato; 
+ } 
+ .checkbox-input:checked + .checkbox-parts::after{ 
+   content: ""; 
+   display: block; 
+   position: absolute; 
+   top: -5px; 
+   left: 5px; 
+   width: 7px; 
+   height: 14px; 
+   transform: rotate(40deg); 
+   border-bottom: 3px solid tomato; 
+   border-right: 3px solid tomato; 
+ } 
+</style>
+
+<div class="checkbox"> 
+  <label> 
+    <input type="checkbox" name="checkbox[]" class="checkbox-input"> 
+    <span class="checkbox-parts">チェック</span> 
+  </label>
+  <br>
+  <input type="checkbox"">チェック（スタイルなし）
+
+</div> 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+</style>
+</head>
+<body>
+  <ol>
+    <li class="a" data-val="a-1"></li>
+    <li class="a" data-val="a-2"></li>
+    <li class="b" data-val="b-1"></li>
+    <li class="b" data-val="b-2"></li>
+    <li class="c" data-val="c-1"></li>
+    <li class="c" data-val="c-2"></li>
+  </ol>
+  
+  <label for="x">please input (a/b/c) <input id="x" value=""></label>
+  <p id="res"></p>
+
+  <script>
+  (function() {
+    'use strict';
+    
+    //NodeList
+    const liList = document.querySelectorAll('li');
+    console.log(liList.length);
+
+    //”z—ñ‚É•ÏŠ·iNodeList -> Arrayj
+    const liArray = [...liList];
+    console.log(liArray.length);
+    
+    document.getElementById('x').addEventListener("keyup", function() {
+    
+    const x = document.getElementById('x').value;
+    console.log(x);
+    const newArray = liArray.filter((xxx) => xxx.classList.contains(x));
+    console.log(newArray.length);
+    if (newArray.length == 0) {
+      document.getElementById('res').innerHTML = '';
+      return;
+    }
+    console.log(newArray);
+    console.log(newArray[0]);
+    console.log(newArray[1]);
+    
+    document.getElementById('res').innerHTML = `${newArray[0].dataset.val} <br> ${newArray[1].dataset.val}`;
+    
+    });
+
+
+  })();
+  </script>
+</body>
+</html>

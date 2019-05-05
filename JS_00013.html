@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+.btn {  cursor: pointer;width: 100px;background: #3498db;}
+li { list-style: none; } 
+span {margin:10px;}
+</style>
+</head>
+<body>
+<table>
+<tr>
+<th>Target</th><th>Button</th><th>Result</th>
+</tr>
+<tr>
+<td><div id="t1"></div></td><td>
+<span id="btn1" class="btn">sum</span>
+<td><p id="res1">xxxxxxxxxx</p></td>
+</tr>
+<tr>
+<td><div id="t2"></div></td><td>
+<span id="btn2" class="btn">reduceRight</span>
+</td><td><p id="res2">xxxxxxxxxx</p></td>
+</tr>
+</table>
+
+<script>
+ (function() {
+  'use strict';
+
+  //number(êîílÇÃîzóÒ)
+   const numList = [
+     1,
+     2,
+     3
+   ];
+
+  //string(ï∂éöóÒÇÃÇQéüå≥îzóÒ)
+   const userDataList = [
+     [
+     'Make','Davis'
+     ]
+     ,
+     [
+     'Tom'
+     ]
+   ];
+
+  //display(number array)
+   document.getElementById('t1').innerHTML = '';
+   for (const ddd of numList) {
+     document.getElementById('t1').innerHTML += `<li>${ddd}</li>`;
+   }
+  //display(string array)
+  function updList(xxx) {
+     let newArray;
+     
+     if (xxx === 'res2') {
+       newArray= userDataList.reduceRight((a,b) => {return a.concat(b)});
+     } else {
+       newArray= userDataList.reduce((a,b) => {return a.concat(b)});
+     }
+     document.getElementById(xxx).innerHTML= '';
+     for (const ddd of newArray) {
+       document.getElementById(xxx).innerHTML += `<li>${ddd}</li>`;
+     }
+   }
+   updList('t2');
+   
+   // click [sum]
+   document.getElementById('btn1').addEventListener('click', function() {
+     const sum = numList.reduce((a,b) => {return a+b});
+     document.getElementById('res1').innerText = sum;
+   });
+
+   // click [reduceRight]
+   document.getElementById('btn2').addEventListener('click', function() {
+     updList('res2');
+   });
+
+  })();
+  </script>
+</body>
+</html>

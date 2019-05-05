@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+.btn {  cursor: pointer;width: 100px;background: #3498db;}
+</style>
+</head>
+<body>
+<table> 
+<tr>
+<td><p id="t1"></p></td>
+<td><span id="btn1" class="btn">string -> JSON Object</span></td>
+<td><p id="res1"></p></td>
+</tr>
+<tr>
+<td><p id="t2"></p></td>
+<td><span id="btn2" class="btn">JSON Object -> string</span></td>
+<td><p id="res2"></p></td>
+</tr>
+</table>
+<script>
+ (function() {
+  'use strict';
+   var jsonString  = `{ "id": 1, "name": "lŒ©", "age":18}`;
+   var jsonData    =  {  id : 2,  name : '¡é',  age :20} ;
+   document.getElementById('t1').textContent  = jsonString;
+   document.getElementById('t2').textContent  = jsonData.id;
+   document.getElementById('t2').textContent += " " + jsonData.name;
+   document.getElementById('t2').textContent += " " + jsonData.age ;
+
+   document.querySelector('#btn1').addEventListener('click', () => {
+     const dat = JSON.parse(jsonString);
+     console.log(dat);
+     document.getElementById('res1').textContent  = dat.id;
+     document.getElementById('res1').textContent += " " + dat.name;
+     document.getElementById('res1').textContent += " " + dat.age;
+   });
+   document.querySelector('#btn2').addEventListener('click', () => {
+     const dat = JSON.stringify(jsonData);
+     console.log(dat);
+     document.getElementById('res2').textContent  = dat;
+   });
+ })();
+</script>
+</body>
+</html>

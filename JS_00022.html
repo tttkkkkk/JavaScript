@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<style>
+ body {background: gray;}
+.btn  {cursor: pointer;width: 100px;background: #3498db;}
+ .breadcrumb li {display:inline; list-style: none;}
+ .breadcrumb li:after {padding: 0 5px; content: '>';}
+ .breadcrumb li:last-child:after     { content: '';}
+ .breadcrumb li a       {text-decoration: none;}
+ .breadcrumb li a:hover {text-decoration: underline;}
+</style>
+<body>
+
+<span id="btn" class="btn">Show BreadcrumbList</span>
+<ul class="breadcrumb"></ul>
+
+<script>
+ (function() {
+  'use strict';
+  const bread = document.querySelector('.breadcrumb');
+  const urlList = [
+    { id: 1, title: 'Top', url:'https://tttkkkkk.hatenablog.com/archive' },
+    { id: 2, title: 'JS' , url:'https://tttkkkkk.hatenablog.com/archive/category/JS' }
+  ];
+  
+  //Click
+  document.querySelector('#btn').addEventListener('click', () => {
+    urlList.forEach((xxx) => {
+      let li=document.createElement('li');
+      li.innerHTML = `<a  href=${xxx.url}> ${xxx.title} </a>`
+      bread.appendChild(li);
+    });
+  });
+ })();
+</script>
+</body>
+</html>
+

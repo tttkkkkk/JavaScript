@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<style>
+ li a       {text-decoration: none;}
+ li a:hover {text-decoration: underline;}
+</style>
+<body>
+<ol id="main"></ol>
+
+<script>
+ (function() {
+  'use strict';
+  const main = document.querySelector('#main');
+  const urlList = [
+     'ランダム値',
+     '関数の引数省略（初期値の設定）',
+     'ユーザーエージェント判定',
+     'ランダム値でグラデーション色を変更',
+     '円を回転させる',
+     '検索（最初の１文字）',
+     '検索（配列.find）',
+     'ソート（配列.sort）',
+     '非同期処理（dispatchEvent・setTimeout）',
+     '画面レイアウト（matchMedia）',
+     'デフォルトイベント無効（preventDefault）',
+     'スプレッド演算子(...)を使って配列に変換（NodeList -> Array）',
+     '配列から各要素を処理（reduce,reduceRight）',
+     'a target="_blank"対応 (rel="noopener")',
+     '要素の複製、追加、削除 (cloneNode、insertBefore、appendChild、remove)',
+     'アニメーション完了を検知する（transitionend）',
+     '非同期処理（promise）',
+     'JSON形式のデータを扱う（JSON.parse、JSON.stringify）',
+     'デモを表示し、そのコードも表示（iframe、Blob、createObjectURL）',
+     '３秒後に問題の解答を表示するサンプル①（setInterval、style.display）',
+     '３秒後に問題の解答を表示するサンプル②（setInterval、style.display、input:checked）',
+     '配列からパンくずリストを作成 (appendChild)',
+     '【HTML/CSS】アコーディオンメニュー (:hover)',
+     '指定したHTMLファイルについて、デモ表示・コード表示（FileReader、iframe、Blob、createObjectURL）',
+     '【HTML/CSS】チェックボックスのチェックのスタイルを変更（:checked + xxx ::after）',
+     'スライドショーの練習 ①(opacity)',
+     'スライドショーの練習 ②(opacity、mouseover、transform: scale)',
+     '英単語の暗記用(random、touchstart)',
+     'プログレスバー(random、touchstart)',
+     'モーダル画面の表示／非表示、および、入力値の連動(className、keyup)',
+     '',
+     '',
+     '',
+     '',
+     '',
+     '',
+     '',
+     '',
+     '',
+     '',
+     ''
+   ];
+
+
+  var i = 0;
+  urlList.forEach((xxx) => {
+      if (xxx != '') {
+        i ++;
+        var tmp = 'JS_' + (""+i).padStart(5,'0') + '.html';
+        let li=document.createElement('li');
+        li.innerHTML = `<a  href=${tmp}>  ${xxx} </a>`
+        main.appendChild(li);
+      }
+  });
+ })();
+</script>
+</body>
+</html>
+

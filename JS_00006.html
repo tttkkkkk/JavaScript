@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+#name-list {
+  display: grid;
+  height: 100%;
+  gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 20px;
+  align-content: center;
+  padding: 2px;
+  overflow-y: scroll;
+}
+#name-list button {
+  background-color: powderblue;
+}
+#name-list button.hide {
+  display: none;
+}
+#search-word-input:focus {
+  background: yellow;
+}
+
+</style>
+</head>
+<body>
+<header>
+  <label>最初の一文字（漢字orふりがな）入力してね
+  <input id="search-word-input" maxlength="1" type="text">
+  </label>
+</header>
+<div id="name-list">
+  <button data-kanj="三宅" data-furi="みやけ">三宅</button>
+  <button data-kanj="三川" data-furi="みかわ">三川</button>
+  <button data-kanj="三田" data-furi="さんだ">三田</button>
+  <button data-kanj="人見" data-furi="ひとみ">人見</button>
+  <button data-kanj="今城" data-furi="いまじょう">今城</button>
+  <button data-kanj="伊敷" data-furi="いしき">伊敷</button>
+  <button data-kanj="依田" data-furi="よだ">依田</button>
+  <button data-kanj="入田" data-furi="いりた">入田</button>
+  <button data-kanj="兼子" data-furi="かねこ">兼子</button>
+  <button data-kanj="只野" data-furi="ただの">只野</button>
+  <button data-kanj="周防" data-furi="すおう">周防</button>
+  <button data-kanj="岡林" data-furi="おかばやし">岡林</button>
+  <button data-kanj="岩倉" data-furi="いわくら">岩倉</button>
+  <button data-kanj="川隅" data-furi="かわすみ">川隅</button>
+  <button data-kanj="広中" data-furi="ひろなか">広中</button>
+  <button data-kanj="有岡" data-furi="ありおか">有岡</button>
+  <button data-kanj="木谷" data-furi="きだに">木谷</button>
+  <button data-kanj="松口" data-furi="まつぐち">松口</button>
+  <button data-kanj="松竹" data-furi="まつたけ">松竹</button>
+  <button data-kanj="河内" data-furi="かわうち">河内</button>
+</div>
+
+  <script>
+  (function() {
+    'use strict';
+
+     const searchWordText = document.querySelector('#search-word-input');
+     const nameList = document.querySelectorAll('#name-list button');
+     
+     searchWordText.select();
+
+     searchWordText.addEventListener('keyup', () => {
+
+       const searchWord = searchWordText.value;
+       nameList.forEach((element) => {
+         // 検索語なければ、全て表示
+         if (!searchWord || searchWord === '') {
+           element.classList.remove('hide');
+           return;
+         }
+         
+         console.log(searchWord);
+
+         const kanj = element.dataset.kanj;       // 漢字
+         const furi = element.dataset.furi;       // ふりがな
+         if (
+           searchWord.charAt() === kanj.charAt() ||
+           searchWord.charAt() === furi.charAt()
+         ) {
+           // 一致する場合、「hide」クラスを除去
+           element.classList.remove('hide');
+         } else {
+           // 一致しない場合、「hide」クラスを追加
+           element.classList.add('hide');
+         }
+       });
+    });
+  })();
+  </script>
+</body>
+</html>

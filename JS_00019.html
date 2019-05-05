@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<style>
+body {background: darkgray;}
+* {margin:2px}
+</style>
+<p>Demo</p>
+<iframe id="demo" height="100px"></iframe>
+<p>Code</p>
+<pre style="background-color:aliceblue"><code id="hoge" ></code></pre>
+
+<!-- コード部分 -->
+<script id="src" type="text/plain">
+  <!DOCTYPE html>
+  <head>
+  <style>
+  body {background: gray;}
+  .btn {  cursor: pointer;width: 100px;background: #3498db;}
+  </style>
+  </head>
+  <body>
+  <span id="btn" class="btn">Click</span>
+  <p id="res"></p>
+
+  <script>
+   (function() {
+    'use strict';
+     document.querySelector('#btn').addEventListener('click', () => {
+       document.getElementById('res').textContent  = "Hello!";
+     });
+   })();
+</script> <!-- 終了タグ -->
+
+<!-- コード表示とiframe設定 -->
+<script>
+ (function() {
+  'use strict';
+
+   var xxx = document.getElementById('src').textContent;
+   xxx += '<' + '/script'+ '>'+ '\n';
+   xxx += '<' + '/body'  + '>'+ '\n';
+   xxx += '<' + '/html'  + '>';
+   console.log(xxx);
+   document.getElementById('hoge').textContent = xxx;
+
+   var blob = new Blob([xxx], { type: 'text/html' });
+   document.getElementById('demo').src = URL.createObjectURL(blob);
+   })();
+</script>
+</body>
+</html>

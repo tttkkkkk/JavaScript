@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+.btn {  cursor: pointer;width: 100px;background: #3498db;}
+li { list-style: none; } 
+span {margin:10px;}
+</style>
+</head>
+<body>
+<table>
+<tr>
+<th>Target</th><th>Button</th><th>Result</th>
+</tr>
+<tr>
+<td><div id="t1">3,2,4,3,1,5</div></td><td>
+<span id="btn1" class="btn">Asc</span>
+<span id="btn2" class="btn">Desc</span></td>
+<td><p id="res1">xxxxxxxxxx</p></td>
+</tr>
+<tr>
+<td><div id="t2"></div></td><td>
+<span id="btn3" class="btn">Asc</span>
+<span id="btn4" class="btn">Desc</span>
+</td><td><p id="res2">xxxxxxxxxx</p></td>
+</tr>
+</table>
+
+<script>
+ (function() {
+  'use strict';
+   const userDataList = [
+     { id: 12, name: '人見' },
+     { id: 13, name: '今城' },
+     { id: 11, name: '三田' },
+     { id: 15, name: '依田' },
+     { id: 14, name: '伊敷' }
+   ];
+  //表示用
+  function updList(xxx) {
+    let listHTML = '';
+    for (const data of userDataList) {
+      listHTML += `<li>${data.id} : ${data.name}</li>`;
+    }
+   document.getElementById(xxx).innerHTML= listHTML;
+   }
+   updList('t2');
+
+   var t1   = document.getElementById('t1').innerText.split(',');
+   console.log(t1);
+   //昇順【配列】
+   document.getElementById('btn1').addEventListener('click', function() {
+     t1.sort((a,b) =>{
+       if (a  >  b) {return  1;}
+       if (a === b) {return  0;}
+       if (a  <  b) {return -1;}
+     });
+     document.getElementById('res1').innerText = t1;
+   });
+   //降順【配列】
+   document.getElementById('btn2').addEventListener('click', function() {
+     t1.sort((a,b) =>{
+        return  b - a ;
+     //違う記述ですが結果同じ
+     //  if (a  >  b) {return -1;}
+     //  if (a === b) {return  0;}
+     //  if (a  <  b) {return  1;}
+     });
+     document.getElementById('res1').innerText = t1;
+   });
+
+   //昇順【オブジェクト配列】
+   document.getElementById('btn3').addEventListener('click', function() {
+     userDataList.sort((a,b) =>{
+       //return a.id  -  b.id;
+       //違う記述ですが結果同じ
+      if (a.id  >  b.id) {return  1;}
+      if (a.id === b.id) {return  0;}
+      if (a.id  <  b.id) {return -1;}
+     });
+     console.log(userDataList);
+     updList('res2');
+   });
+   //降順【オブジェクト配列】
+   document.getElementById('btn4').addEventListener('click', function() {
+     userDataList.sort((a,b) =>{
+        return b.id  -  a.id;
+     });
+     console.log(userDataList);
+     updList('res2');
+   });
+
+  })();
+  </script>
+</body>
+</html>

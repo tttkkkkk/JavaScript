@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<style>
+* {margin:1px}
+body {background: darkgray;}
+pre {background: aliceblue; height:150px; width:600px}
+</style>
+<p>Demo</p>
+<iframe id="demo" height="150px" width="600px"></iframe>
+<p>Code</p>
+<pre><code id="hoge" ></code></pre>
+
+<input type="file" id="myFile" accept=".html"/>
+
+<script>
+ (function() {
+  'use strict';
+  const element = document.querySelector('#myFile');
+
+  element.addEventListener('input', (event) => {
+    const reader = new FileReader();
+    reader.readAsText(event.target.files[0]);
+
+    reader.addEventListener('load', () => {
+     var xxx = reader.result;
+     console.log(xxx);
+     document.getElementById('hoge').textContent = xxx;
+
+     var blob = new Blob([xxx], { type: 'text/html' });
+     document.getElementById('demo').src = URL.createObjectURL(blob);
+    });
+
+  });
+})();
+</script>
+</body>
+</html>

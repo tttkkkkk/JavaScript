@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<style>
+body {background: gray;}
+.btn {  cursor: pointer;width: 100px;background: #3498db;}
+</style>
+
+<span id="btn" class="btn">Click</span>
+<p id="mon">1+1 = ?</p>
+<p id="ans">1+1 = 2</p>
+<p id="tim"></p>
+
+<script>
+ (function() {
+  'use strict';
+
+  const tim = document.getElementById("tim");
+  const mon = document.getElementById("mon");
+  const ans = document.getElementById("ans");
+  tim.style.display = "none";
+  mon.style.display = "none";
+  ans.style.display = "none";
+
+  document.querySelector('#btn').addEventListener('click', () => {
+
+    tim.style.display = "block";
+    mon.style.display = "block";
+    ans.style.display = "none";
+
+    //3000ms = 3s
+    const endTime = Date.now() + 3000;
+    // 5ms Interval
+    const timerId = setInterval(timer,5);
+    
+    function timer() {
+      const nowTime = Date.now();
+      const dif = endTime - nowTime;
+      const sec = dif / 1000;
+      tim.textContent = `${sec}`;
+
+      if (sec<0) {
+        clearInterval(timerId);
+        tim.style.display = "none";
+        mon.style.display = "none";
+        ans.style.display = "block";
+      }
+    }
+  });
+  
+
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+<style>
+body {background: gray;}
+.con {
+  cursor: pointer;
+  height: 100px;
+  display: block;
+  position: absolute;
+  background: white;
+  width: 100px;
+  transition: all 5s;
+}
+.con.long {
+  width: 300px;
+}
+#res {position: absolute; top:120px;}
+li { list-style: none; } 
+</style>
+</head>
+<body>
+  <div class="con"></div>
+  <div id="res"></div>
+ <script>
+ (function() {
+  'use strict';
+
+   function addMsg(xxx) {
+    let date   = new Date();
+    let locale = date.toLocaleTimeString();
+    document.getElementById('res').innerHTML += `<li>${locale}  ${xxx}.. </li>`;
+   }
+   document.querySelector('.con').addEventListener('transitionend', () => {
+    addMsg('transitionend');
+   });
+   document.querySelector('.con').addEventListener('click', () => {
+    addMsg('click!');
+    const el = document.querySelector('.con');
+    el.classList.toggle('long');
+    //ˆÈ‰º‚Å‚à“¯‚¶Œ‹‰Ê
+    //if (el.classList.contains('long') === true) {
+    //  el.classList.remove('long');
+    //} else {
+    //  el.classList.add('long');
+    //}
+    
+    
+   });
+
+  })();
+  </script>
+</body>
+</html>

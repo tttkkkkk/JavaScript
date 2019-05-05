@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<style>
+ body {background: gray;}
+ ul{padding-left:0;}
+ a {text-decoration:none;}
+ a:hover {text-decoration: underline;}
+ a + a {margin:20px;}
+ .subMenu > li {visibility:hidden;}
+ .head > li {display:inline-block;}
+ li {list-style: none;}
+
+ .menu:hover + .subMenu > li {visibility:visible;}
+ .subMenu:hover  li {visibility:visible;}
+</style>
+
+<ul class="head">
+  <li><a href="#" class="menu">Menu1</a>
+    <ul class="subMenu">
+    <li><a href="#">subMenu1</a></li>
+    <li><a href="#">subMenu2</a></li>
+    </ul>
+  </li>
+  <li><a href="#" class="menu">Menu2</a>
+    <ul class="subMenu">
+      <li><a href="#">subMenu11</a><a href="#">subMenu13</a></li>
+      <li><a href="#">subMenu12</a><a href="#">subMenu14</a></li>
+    </ul>
+  </li>
+</ul>
+</body>
+</html>
+
